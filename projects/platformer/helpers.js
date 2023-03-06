@@ -446,6 +446,7 @@ function drawCollectables() {
         collectableWidth,
         collectableHeight
       );
+      
     } else {
       //draw the icons at the top if collected
       if (collectables[i].alpha > 0.4) {
