@@ -48,11 +48,11 @@ $(document).ready(function () {
   for (var i = 0; i < dataShapes; i++) {
     var currentShape = dataShapes[i];
     if (currentShape.color === "red") {
-      dataShapes.goodBehavior = "bounce";
+      currentShape.goodBehavior = "bounce";
     } else if (currentShape.color === "blue") {
-      dataShapes.goodBehavior = "blink";
+      currentShape.goodBehavior = "blink";
     } else {
-      dataShapes.goodBehavior = "spin";
+      currentShape.goodBehavior = "spin";
     }
   }
 
@@ -93,8 +93,8 @@ $(document).ready(function () {
   function badDisplay() {
     // TODO 5-b: call your handleBad function
     var currentShape = dataShapes[currentIndex];
-    var repeat = currentShape.repeat
-    handleBad(currentShape, repeat)
+    var repeat = currentShape.repeat;
+    handleBad(currentShape, repeat);
   }
 
   /////////////////////////////////////////////////
