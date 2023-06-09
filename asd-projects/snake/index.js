@@ -4,6 +4,31 @@
 ///////////////////////// VARIABLE DECLARATIONS ////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
+/* NOTESS
+
+apple.element: A reference to the HTML element that represents the Apple.
+apple.row: A reference to the row where the Apple currently exists.
+apple.column: A reference to the column where the Apple currently exists.
+The apple.element Object will be needed in order to make any modifications 
+to the Apple's HTML element using jQuery (more on jQuery in the next section).
+The apple.row and apple.column properties will be useful for determining when the Snake collides with the Apple.
+
+We can refer to each part of the snake as a snakeSquare Object which will have the following properties:
+snakeSquare.element: A reference to the HTML element that represents a part of the snake.
+snakeSquare.row: A reference to the row where the snakeSquare currently exists.
+snakeSquare.column: A reference to the column where the snakeSquare currently exists.
+snakeSquare.direction: A reference to the direction that this particular snakeSquare is currently moving in.
+The snakeSquare.element Object will be needed to modify the HTML element using jQuery. 
+The snakeSquare.row, snakeSquare.column, and snakeSquare.direction properties will all 
+be useful in determining the movement of that particular snakeSquare.
+
+This data will be stored in the snake Object:
+
+snake.body: An Array containing all snakeSquare Objects.
+snake.head: Reference to the jQuery snakeSquare Object at the head of the snake. Duplicate of snake.body[0]
+snake.tail: Reference to the jQuery snakeSquare Object at the end of the snake. Duplicate of snake.body[snake.body.length - 1]
+*/
+
 // HTML jQuery Objects
 var board = $('#board');
 var scoreElement = $('#score');
@@ -95,7 +120,20 @@ function moveSnake() {
   
   /* 
   TODO 6: determine the next row and column for the snake's head
-  
+  */
+
+  if (snake.head.direction === 'left') {
+  snake.head.column = snake.head.column - 1;
+  } else if (snake.head.direction === 'right') {
+    snake.head.column = snake.head.column + 1;
+  } else if (snake.head.direction === 'down') {
+  snake.head.row = snake.head.row + 1;
+  } else if (snake.head.direction === 'up'){
+    snake.head.row = snake.head.row - 1;
+  } 
+  repositionSquare(snake.head);
+
+  /*
   HINT: The snake's head will need to move forward 1 square based on the value
   of snake.head.direction which may be one of "left", "right", "up", or "down"
   */
@@ -113,11 +151,17 @@ function checkForNewDirection(event) {
 
   if (activeKey === KEY.LEFT) { 
     snake.head.direction = "left"; 
-  }
+  } else if (activeKey === KEY.RIGHT) { 
+    snake.head.direction = "right"; 
+  } else if (activeKey === KEY.DOWN) { 
+    snake.head.direction = "down"; 
+  } else { 
+    snake.head.direction = "up"; 
+  } 
 
   // FILL IN THE REST
   
-  // console.log(snake.head.direction);     // uncomment me!
+  //console.log(snake.head.direction);     // uncomment me!
 }
 
 function hasCollidedWithApple() {
