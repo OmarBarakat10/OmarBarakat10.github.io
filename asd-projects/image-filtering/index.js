@@ -23,7 +23,7 @@ function applyAndRender() {
   applyFilter(reddify);
   applyFilterNoBackground(decreaseBlue);
   applyFilterNoBackground(increaseGreenByBlue);
-  
+  //calls the different functions to change the colors
 
   // do not change the below line of code
   render($("#display"), image);
@@ -64,28 +64,28 @@ function applyFilterNoBackground(filterFunction){
       }
     }
   }
-}
+} //this function does the same as apply filter, but only if the background is a different color than the current color
 
 // TODO 5: Create the keepInBounds function
 
 function keepInBounds(aNumber){
   return Math.max(0, Math.min(aNumber, 255));
-}
+} // makes sure the value of any color is no greater than 255 or any less than zero
 
 // TODO 3: Create reddify function
 function reddify(anArray) {
   anArray[RED] = 200;
-}
+} //this function changes the value of red in the image, causing it to appear more red
 
 // TODO 6: Create more filter functions
 
 function decreaseBlue(yipee) {
   yipee[BLUE] = keepInBounds(yipee[BLUE] - 50);
-}
+}//this function changes the value of red in the image, causing it to appear less blue
 
 function increaseGreenByBlue(um){
   um[GREEN] = keepInBounds(um[GREEN] + um[BLUE]);
-}
+} //this function changes the value of green in the image by increasing the value by the number of blue
 
 
 // CHALLENGE code goes below here
